@@ -1,0 +1,56 @@
+{
+  "name": "Web-Ex-Machina/contao-i18nl10n-news",
+  "type":"contao-bundle",
+  "description": "Extension to Contao multilingual bundle, to help manage news translation in an easier way",
+  "keywords": [
+    "Language",
+    "Multilingual",
+    "I18N",
+    "L10N",
+    "News",
+    "Translation"
+  ],
+  "homepage": "https://www.webexmachina.fr/",
+  "license": "MIT",
+  "authors": [
+    {
+      "name": "Web ex Machina",
+      "homepage": "https://www.webexmachina.fr",
+      "role":"Developer"
+    }
+  ],
+  "repositories": [
+      {
+          "type": "vcs",
+          "url": "https://github.com/Web-Ex-Machina/contao-i18nl10n"
+      }
+  ],
+  "support":{
+      "website":"https://www.webexmachina.fr/",
+      "issues":"https://github.com/webexmachina/contao-i18nl10n-news/issues",
+      "source":"https://github.com/webexmachina/contao-i18nl10n-news"
+  },
+  "require": {
+    "php": "^5.6|^7.0",
+    "contao/core-bundle": "^4.4",
+    "contao-community-alliance/composer-plugin": "*",
+    "exploreimpact/contao-i18nl10n": "^2.0"
+  },
+  "autoload":{
+    "psr-4": {
+      "Verstaerker\\I18nl10nNewsBundle\\": "src/"
+    },
+    "classmap": [
+      "src/Resources/contao/"
+    ],
+    "exclude-from-classmap": [
+      "src/Resources/contao/config/",
+      "src/Resources/contao/dca/",
+      "src/Resources/contao/languages/",
+      "src/Resources/contao/templates/"
+    ]
+  },
+  "extra":{
+    "contao-manager-plugin": "Verstaerker\\I18nl10nNewsBundle\\ContaoManager\\Plugin"
+  }
+}
