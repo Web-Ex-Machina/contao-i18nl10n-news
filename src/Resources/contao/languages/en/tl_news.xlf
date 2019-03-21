@@ -1,0 +1,19 @@
+<?xml version="1.0" ?><xliff version="1.1">
+  <file datatype="php" original="system/modules/contao-i18nl10n-news/languages/en/tl_news.php" source-language="en" target-language="en">
+    <body>
+    	<trans-unit id="tl_news.i18nl10n_legend">
+			<source>Language &amp; Translations</source>
+			<target>Language &amp; Traductions</target>
+		</trans-unit>
+
+		<trans-unit id="tl_news.i18nl10n_language.0">
+			<source>News Language</source>
+			<target>News Language</target>
+		</trans-unit>
+		<trans-unit id="tl_news.i18nl10n_language.1">
+			<source>Please select the language used for this news</source>
+			<target>Please select the language used for this news</target>
+		</trans-unit>
+	</body>
+  </file>
+</xliff>

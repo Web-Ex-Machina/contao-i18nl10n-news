@@ -12,19 +12,22 @@ $this->loadDataContainer('tl_content');
 $GLOBALS['TL_DCA']['tl_news']['config']['onload_callback'][] = array('tl_news_i18nl10n', 'updatePalettes');
 $GLOBALS['TL_DCA']['tl_news']['list']['sorting']['child_record_callback'] = array('tl_news_i18nl10n', 'addTranslations');
 
-$GLOBALS['TL_DCA']['tl_news']['fields']['i18nl10n_language'] = array(
-    'label'            => &$GLOBALS['TL_LANG']['tl_news']['i18nl10n_language'],
-    'exclude'          => true,
-    'filter'           => true,
-    'inputType'        => 'select',
-    'options_callback' => array('tl_content_l10n', 'languageOptions'),
-    'reference'        => &$GLOBALS['TL_LANG']['LNG'],
-    'eval'             => array(
-        'mandatory'          => false,
-        'rgxp'               => 'alpha',
-        'maxlength'          => 2,
-        'nospace'            => true,
-        'tl_class'           => 'w50'
+$GLOBALS['TL_DCA']['tl_news']['fields']['i18nl10n_language'] = array_merge(
+    $GLOBALS['TL_DCA']['tl_page']['fields']['language'],
+    array(
+        'label'            => &$GLOBALS['TL_LANG']['tl_news']['i18nl10n_language'],
+        'exclude'          => true,
+        'filter'           => true,
+        'inputType'        => 'select',
+        'options_callback' => array('tl_content_l10n', 'languageOptions'),
+        'reference'        => &$GLOBALS['TL_LANG']['LNG'],
+        'eval'             => array(
+            'mandatory'          => false,
+            'rgxp'               => 'alpha',
+            'maxlength'          => 2,
+            'nospace'            => true,
+            'tl_class'           => 'w50'
+        )
     )
 );
 
@@ -39,11 +42,7 @@ class tl_news_i18nl10n extends tl_news
     {
         $objNews = \NewsModel::findByPk($dc->id);
 
-        $GLOBALS['TL_DCA']['tl_news']['palettes']['default'] = str_replace(
-            'published',
-            'i18nl10n_language,published',
-            $GLOBALS['TL_DCA']['tl_news']['palettes']['default']
-        );
+        $GLOBALS['TL_DCA']['tl_news']['palettes']['default'] .= ';{i18nl10n_legend},i18nl10n_language';
     }
 
     /**
@@ -53,8 +52,8 @@ class tl_news_i18nl10n extends tl_news
      *
      * @return string
      */
-    public function listNewsArticles($arrRow)
+    public function addTranslations($arrRow)
     {
-        return '<div class="tl_content_left"><strong>' . $arrRow['headline'] . '</strong> <span style="color:#b3b3b3;padding-left:3px">[' . Date::parse(Config::get('datimFormat'), $arrRow['date']) . ']</span><br />Lang : '.$GLOBALS['TL_LANG']['LNG'][$arrRow['alt_language']].' || Country : '.$GLOBALS['TL_LANG']['CNT'][$arrRow['alt_country']].' || Category : '.$GLOBALS['TL_LANG']['tl_news']['alt_category'][$arrRow['alt_category']].'</div>';
+        return '<div class="tl_content_left"><strong>' . $arrRow['headline'] . '</strong> <span style="color:#b3b3b3;padding-left:3px">[' . Date::parse(Config::get('datimFormat'), $arrRow['date']) . ']</span><br />'.$GLOBALS['TL_LANG']['MSC']['i18nl10n_fields']['language']['label'][0].' : '.$GLOBALS['TL_LANG']['LNG'][$arrRow['i18nl10n_language']].'</div>';
     }
 }

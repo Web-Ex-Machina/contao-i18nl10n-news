@@ -10,6 +10,7 @@ Thumbs.db
 .idea/
 nbproject/
 *.sublime-*
+sftp-config*.json
 
 # Vendors
 /vendor
